@@ -1,0 +1,33 @@
+<ul class="dropdown-menu">
+                                    <li>
+                                        <form action="dAdmin.php" method="post">
+                                            <input type="hidden" name="id" value="<?= $data['id'] ?>">
+                                            <input type="hidden" name="option" value="belum dikonfirmasi">
+                                            <button type="submit">belum dikonfirmasi</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="dAdmin.php" method="post">
+                                            <input type="hidden" name="id" value="<?= $data['id'] ?>">
+                                            <input type="hidden" name="option" value="konfirmasi">
+                                            <button type="submit">konfirmasi</button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="dAdmin.php" method="post">
+                                            <input type="hidden" name="id" value="<?= $data['id'] ?>">
+                                            <input type="hidden" name="option" value="dikembalikan">
+                                            <button type="submit">dikembalikan</button>
+                                        </form>
+                                    </li>
+                                </ul>
+
+                                $sql = "SELECT * FROM db_barang";
+$datas = $server->query($sql);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST["id"];
+    $option = $_POST["option"];
+    $query = "UPDATE db_barang SET status = '$option' WHERE id = $id";
+    mysqli_query($server, $query);
+}
